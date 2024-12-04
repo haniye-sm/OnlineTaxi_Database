@@ -4,8 +4,8 @@ create database Online_Taxi;
 --جدول مسافران
 create table passengers(
 userID int identity primary key,
-fullname nvarchar(255) not null,
-phonenumber nvarchar(255) not null,
+fullname nvarchar(100) not null,
+phonenumber nvarchar(50) not null,
 registration_date date default(getdate())
 );
 
@@ -16,14 +16,14 @@ registration_date date default(getdate())
 create table drivers(
 driverid int identity primary key,
 cabid int not null,
-fullname nvarchar(255),
+fullname nvarchar(100),
 idcode nvarchar(10) not null unique,
 phonenumber nvarchar(20) not null unique,
 gender nvarchar(10) check (gender in ('female' , 'male')),
-city nvarchar(255),
+city nvarchar(100),
 profile_pic varbinary(max) not null,
 license_image varbinary(max) not null,
-registration_date date not null
+registration_date date not null,
 foreign key (cabid) references cabs(cabid)
 );
 
@@ -32,10 +32,10 @@ foreign key (cabid) references cabs(cabid)
 
 --جدول خودروها
 create table cabs(
-cabid int identity not null ,
+cabid int identity primary key ,
 driverid int not null,
 car_model nvarchar(255) not null,
-Car_Document varbinary(max) not null,
+Car_Documents varbinary(max) not null,
 foreign key (driverid) references drivers(driverid)
 );
 
