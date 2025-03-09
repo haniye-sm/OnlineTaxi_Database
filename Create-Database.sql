@@ -14,7 +14,7 @@ registration_date date default(getdate())
 
 --جدول سفیران
 create table drivers(
-driverid int identity primary key,
+driverid int identity(1,1) primary key,
 cabid int not null,
 fullname nvarchar(100),
 idcode nvarchar(10) not null unique,
